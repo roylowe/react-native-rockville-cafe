@@ -7,8 +7,7 @@ function RenderSpecial({special}) {
         return (
             <Card 
                 featuredTitle={special.name}
-                image={require('./images/eggPlateSpecial.jpeg')}
-            >
+                image={require('./images/eggPlateSpecial.jpeg')}>
                 <Text style={{margin: 10}}>
                     {special.description}
                 </Text>
@@ -16,10 +15,11 @@ function RenderSpecial({special}) {
         );
     }
     return <View />;
+                
 }
 
 function SpecialInfo(props) {
-    return <RenderCampsite special={props.special} />;
+    return <RenderSpecial special={props.special} />;
 }
 
 export default SpecialInfo;

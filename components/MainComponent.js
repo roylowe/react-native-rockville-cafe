@@ -59,7 +59,7 @@ const HomeNavigator = createStackNavigator(
 ); 
 
 
-const AppNavigator = createAppContainer(Main  Navigator);
+const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
     render() {

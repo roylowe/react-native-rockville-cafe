@@ -1,10 +1,13 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
+import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import SpecialsInfo from './SpecialsInfoComponent';
 import { View, Platform } from 'react-native';
 import SpecialInfo from './SpecialsInfoComponent';
 import Constants from 'expo-constants';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
 
@@ -28,21 +31,37 @@ const DirectoryNavigator = createStackNavigator(
 
 );
 
-const AppNavigator = createAppContainer(DirectoryNavigator);
+const HomeNavigator = createStackNavigator(
+    {
+        Home: { screen: Home }
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+);
+
+ const MainNavigator = createDrawerNavigator(
+    {
+        Home: { screen: HomeNavigator },
+        Directory: { screen: DirectoryNavigator }
+    },
+    {
+        drawerBackgroundColor: '#CEC8FF'
+    }
+); 
+
+
+const AppNavigator = createAppContainer(Main  Navigator);
 
 class Main extends Component {
-    /* constructor(props) {
-        super(props);
-        this.state = {
-            specials: SPECIALS,
-            selectedSpecial: null
-        };
-    } */
-
-    /* onSpecialSelect(specialId){
-        this.setState({selectedSpecial: specialId});
-    }
- */
     render() {
         return (
             <View                
@@ -50,19 +69,9 @@ class Main extends Component {
                     flex:1,
                     paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
                 
-                }}
-                
-            >
+                }}>
                 <AppNavigator />
-                {/* <Directory 
-                    specials={this.state.specials} 
-                    onPress={specialId => this.onSpecialSelect(specialId)}    
-                />
-                <SpecialInfo
-                    special={this.state.specials.filter(
-                        special => special.id === this.state.selectedSpecial)[0]}
-                /> */}
-            
+                            
             </View>
         );
     }

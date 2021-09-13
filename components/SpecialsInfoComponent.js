@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
+import { SPECIALS } from '../shared/specials';
 
 function RenderSpecial({special}) {
     if (special) {
@@ -18,8 +19,25 @@ function RenderSpecial({special}) {
                 
 }
 
-function SpecialInfo(props) {
-    return <RenderSpecial special={props.special} />;
+class SpecialInfo extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            specials: SPECIALS
+        };
+    }
+
+    static navigationOptions = {
+        title: 'Special Information'
+    }
+
+    render(){
+        const specialId = this.props.navigation.getParam('specialId');
+        const special = this.state.specials.filter(special => special.id === specialId)[0];
+         return <RenderSpecial special={special} />;
+
+    }
 }
 
 export default SpecialInfo;

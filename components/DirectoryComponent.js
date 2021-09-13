@@ -1,27 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { SPECIALS } from '../shared/specials';
 
-function Directory(props) {
+class Directory extends Component {
 
-    const renderDirectoryItem = ({item}) => {
-        return (
-            <ListItem
-                title={item.name}
-                subtitle={item.description}
-                onPress={() => props.onPress(item.id)}
-                leftAvatar={{ source: require('./images/eggPlateSpecial.jpeg')}}
-            />
-        );
+    constructor(props) {
+        super(props);
+        this.state = {
+            specials: SPECIALS
+        };
+    }
+
+    static navigationOptions = {
+        title: 'Directory'
     };
 
-    return (
-        <FlatList
-            data={props.specials}
-            renderItem={renderDirectoryItem}
-            keyExtractor={item => item.id.toString()}
-        />
-    );
+
+    render() {
+        const { navigate } = this.props.navigation;
+        const renderDirectoryItem = ({item}) => {
+            return (
+                <ListItem
+                    title={item.name}
+                    subtitle={item.description}
+                    onPress={() => navigate('SpecialInfo', { specialId: item.id })}
+                    leftAvatar={{ source: require('./images/eggPlateSpecial.jpeg')}}
+                />
+            );
+        };
+
+        return (
+            <FlatList
+                data={this.state.specials}
+                renderItem={renderDirectoryItem}
+                keyExtractor={item => item.id.toString()}
+            />
+        );
+  }
 }
 
 export default Directory;

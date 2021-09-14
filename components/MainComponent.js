@@ -2,14 +2,14 @@ import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
-import SpecialsInfo from './SpecialsInfoComponent';
+//import SpecialsInfo from './SpecialsInfoComponent';
 import { View, Platform } from 'react-native';
 import SpecialInfo from './SpecialsInfoComponent';
 import Constants from 'expo-constants';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
-import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
+
 
 const DirectoryNavigator = createStackNavigator(
     {

@@ -13,7 +13,7 @@ function RenderItem({item}) {
                 <Text style={{margin: 10}}>
                     {item.description}
                 </Text>
-                <Text>inside render item function</Text>
+                
             </Card>
             
         );
